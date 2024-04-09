@@ -38,11 +38,13 @@ curl http://localhost:8081/prime-calculation?startNumber=10000000000000&count=25
 
 * The build takes a lot longer (2 minutes w/o downloading dependencies), utilizing ~14 GB RAM and 8 CPU Cores, image size: 148 MB
 * The application starts in 0.014 seconds
+* The call using default parameters takes 2.203 seconds
 
 ### Non-native quarkus application
 
 * The build is faster (6.2 seconds w/o downloading dependencies), image size: 475 MB
 * The application starts in 0.914 seconds
+* The call using default parameters takes 3.518 seconds
 
 ## Running the application in dev mode
 
