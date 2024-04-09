@@ -2,6 +2,7 @@ package de.sninvent;
 
 import java.util.ArrayList;
 import java.util.List;
+import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -13,7 +14,8 @@ public class PrimeCalculationResource {
 
   @GET
   @Produces(MediaType.TEXT_PLAIN)
-  public String hello(@QueryParam("startNumber") Long startNumber, @QueryParam("count") int count) {
+  public String hello(@QueryParam("startNumber") @DefaultValue("10000000000000") Long startNumber,
+      @QueryParam("count") @DefaultValue("250") int count) {
     long startTime = System.currentTimeMillis();
     List<Long> primeNumbers = new ArrayList<>();
     Long currentNumber = startNumber;
