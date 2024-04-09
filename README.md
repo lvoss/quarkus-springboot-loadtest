@@ -20,6 +20,19 @@ docker build -f src/main/docker/Dockerfile.jvm -t quarkus/quarkus-loadtest-jvm .
 docker run -i --rm -p 8081:8080 quarkus/quarkus-loadtest-jvm
 ```
 
+## Push to gcloud artifact registry
+
+The gcloud cli is already installed within the devcontainer.
+
+```bash
+gcloud auth login
+gcloud auth configure-docker europe-west3-docker.pkg.dev
+docker tag quarkus/quarkus-loadtest europe-west3-docker.pkg.dev/<project>/quarkus-loadtest/quarkus-loadtest
+docker push europe-west3-docker.pkg.dev/<project>/quarkus-loadtest/quarkus-loadtest
+docker tag quarkus/quarkus-loadtest-jvm europe-west3-docker.pkg.dev/<project>/quarkus-loadtest/quarkus-loadtest-jvm
+docker push europe-west3-docker.pkg.dev/<project>/quarkus-loadtest/quarkus-loadtest-jvm
+```
+
 ## Execute the load test
 
 Once started, access the prime-calculation endpoint and choose a startNumber and count (how many prime numbers to calculate). 
@@ -39,12 +52,14 @@ curl http://localhost:8081/prime-calculation?startNumber=10000000000000&count=25
 * The build takes a lot longer (2 minutes w/o downloading dependencies), utilizing ~14 GB RAM and 8 CPU Cores, image size: 148 MB
 * The application starts in 0.014 seconds
 * The call using default parameters takes 2.203 seconds
+* The container uses 15,88 MB RAM
 
 ### Non-native quarkus application
 
 * The build is faster (6.2 seconds w/o downloading dependencies), image size: 475 MB
 * The application starts in 0.914 seconds
 * The call using default parameters takes 3.518 seconds
+* The container uses 132,7 MB RAM
 
 ## Running the application in dev mode
 
