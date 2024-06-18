@@ -1,7 +1,6 @@
 # quarkus-loadtest
 
 This project aims to help with load-testing quarkus-native vs. standard quarkus in cloud environments. The project consists of one endpoint for calculating Prime numbers.
-The corresponding github repository for Spring Boot is located here: <https://github.com/skleinhaus/SpringNativeBenchmark>
 
 ## Compiling to docker images
 
