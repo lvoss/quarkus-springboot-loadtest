@@ -1,0 +1,6 @@
+FROM registry.access.redhat.com/ubi8/openjdk-21:1.18
+COPY target/extracted/dependencies/ ./
+COPY target/extracted/spring-boot-loader/ ./
+COPY target/extracted/snapshot-dependencies/ ./
+COPY target/extracted/application/ ./
+ENTRYPOINT ["java","org.springframework.boot.loader.launch.JarLauncher"]
