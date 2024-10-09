@@ -1,20 +1,13 @@
-####
-# This Dockerfile is used in order to build a container that runs the Quarkus application in native (no JVM) mode.
-#
-# Before building the container image run:
-#
-# ./mvnw package -Dnative
-#
-# Then, build the image with:
-#
-# docker build -f src/main/docker/Dockerfile.native -t quarkus/quarkus-loadtest .
-#
-# Then run the container using:
-#
-# docker run -i --rm -p 8080:8080 quarkus/quarkus-loadtest
-#
-###
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.9
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.9 as ubi
+
+FROM registry.access.redhat.com/ubi9-micro:9.2 AS scratch
+# -- Final Stage
+FROM scratch
+COPY --from=ubi /usr/lib64/libgcc_s.so.1 /usr/lib64/libgcc_s.so.1
+COPY --from=ubi /usr/lib64/libstdc++.so.6 /usr/lib64/libstdc++.so.6
+COPY --from=ubi /usr/lib64/libz.so.1 /usr/lib64/libz.so.1
+
+# FROM registry.access.redhat.com/ubi8/ubi-minimal:8.9
 WORKDIR /work/
 RUN chown 1001 /work \
     && chmod "g+rwX" /work \
