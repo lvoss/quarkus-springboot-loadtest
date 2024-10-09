@@ -4,4 +4,4 @@ This project aims test a Spring Boot and a Quarkus application, both natively co
 
 ## Results
 
-For results see [here for Quarkus](quarkus/README.md) and [here for Spring Boot](spring/README.md).
+For results see [here for Quarkus](quarkus/README.md) and [here for Spring Boot](springboot/README.md).
