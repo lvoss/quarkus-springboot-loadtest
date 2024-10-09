@@ -8,7 +8,7 @@ The purpose of this project is to determine the advantages of using GraalVM nati
 Create the native executable at target/springnativebenchmark
 
 ```
-./mvn -Pnative native:compile
+./mvnw -Pnative native:compile
 ```
 
 Create a native image
@@ -23,7 +23,7 @@ Create a JAR file
 
 
 ```
-./mvn package
+./mvnw package
 ```
 
 Extract the JAR contents
@@ -45,6 +45,22 @@ gcloud auth login
 docker tag {Image Name} europe-west3-docker.pkg.dev/{Repository Name}
 docker push europe-west3-docker.pkg.dev/{Repository Name}
 ```
+
+## Results from local testing
+
+### Native spring application
+
+* The build takes a lot longer (2 minutes 40 seconds w/o downloading dependencies), utilizing ~8 GB RAM and 8 CPU Cores, image size: 107 MB, executable size 78 MB
+* The application starts in 0.043 seconds
+* The call using default parameters takes 2.1 seconds
+* The container uses 36 MB RAM
+
+### Non-native spring application
+
+* The build is faster (4,05 seconds w/o downloading dependencies), image size: 477 MB, executable size 21 MB (but JRE is needed)
+* The application starts in 1.4 seconds
+* The call using default parameters takes 2.8 seconds
+* The container uses 158 MB RAM
 
 ## Results from testing with Google Cloud Run
 
