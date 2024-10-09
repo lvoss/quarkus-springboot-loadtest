@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringnativebenchmarkApplication<springnativebenchmark>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "de.sninvent.springnativebenchmark.SpringnativebenchmarkApplication",
+            "projectName": "springnativebenchmark",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
